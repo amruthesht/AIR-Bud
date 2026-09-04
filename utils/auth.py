@@ -18,8 +18,8 @@ DATA_DIR.mkdir(exist_ok=True)
 # In production, this would be a proper KMS. For now, we use a fixed salt.
 _SALT = b"airbud-salt-2026"
 _MASTER_KEY = hashlib.sha256(_SALT).digest()[:32]
-# Pad to 32 bytes for Fernet
-FERNET_KEY = Fernet._generate_key()
+# Generate a proper Fernet key (32 bytes URL-safe base64)
+FERNET_KEY = Fernet.generate_key()
 
 
 def _get_user_dir(username: str) -> Path:

@@ -9,7 +9,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from utils.syllabus_parser import parse_syllabus
 from utils.auth import save_user_state, load_user_state
-from utils.theme import apply_theme
+from utils.theme import apply_theme, sidebar_brand, sidebar_nav
 
 st.set_page_config(page_title="Upload Syllabus - AIR-Bud", page_icon="📄")
 apply_theme()
@@ -21,6 +21,11 @@ if not st.session_state.get("user_logged_in"):
     st.stop()
 
 user = st.session_state.get("current_user", {})
+
+# Sidebar
+with st.sidebar:
+    sidebar_brand()
+    sidebar_nav("pages/01_Upload_Syllabus.py")
 
 st.title("📄 Upload Your Syllabus")
 st.caption("AIR-Bud | Am I Ready?")

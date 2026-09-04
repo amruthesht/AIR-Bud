@@ -51,14 +51,3 @@ jobs:
           name: AIR-Bud-macOS-${{ matrix.arch }}
           path: dist/AIR-Bud-${{ matrix.arch }}
           retention-days: 30
-
-      - name: Create release (main branch only)
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: "macos-${{ matrix.arch }}-v${{ github.run_number }}"
-          files: dist/AIR-Bud-${{ matrix.arch }}
-          draft: false
-          prerelease: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

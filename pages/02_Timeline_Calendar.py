@@ -8,7 +8,7 @@ from pathlib import Path
 
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from utils.calendar_exporter import generate_ics, generate_google_calendar_url
-from utils.theme import apply_theme
+from utils.theme import apply_theme, sidebar_brand, sidebar_nav
 
 st.set_page_config(page_title="Timeline & Calendar - AIR-Bud", page_icon="📅")
 apply_theme()
@@ -18,6 +18,11 @@ if not st.session_state.get("user_logged_in"):
     st.warning("⚠️ Please sign in first.")
     st.page_link("app.py", label="← Back to Home", icon="🏠")
     st.stop()
+
+# Sidebar
+with st.sidebar:
+    sidebar_brand()
+    sidebar_nav("pages/02_Timeline_Calendar.py")
 
 st.title("📅 Timeline & Calendar Export")
 st.caption("AIR-Bud | Am I Ready?")

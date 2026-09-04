@@ -48,14 +48,3 @@ jobs:
           name: AIR-Bud-Windows
           path: dist/AIR-Bud.exe
           retention-days: 30
-
-      - name: Create release (main branch only)
-        if: github.ref == 'refs/heads/main' && github.event_name == 'push'
-        uses: softprops/action-gh-release@v2
-        with:
-          tag_name: "windows-v${{ github.run_number }}"
-          files: dist/AIR-Bud.exe
-          draft: false
-          prerelease: true
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}

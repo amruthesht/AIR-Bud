@@ -9,7 +9,7 @@ from pathlib import Path
 sys.path.insert(0, str(Path(__file__).parent.parent))
 from utils.llm_client import structured_output
 from utils.auth import save_user_state
-from utils.theme import apply_theme
+from utils.theme import apply_theme, sidebar_brand, sidebar_nav
 
 st.set_page_config(page_title="Readiness Assessment - AIR-Bud", page_icon="📊")
 apply_theme()
@@ -21,6 +21,11 @@ if not st.session_state.get("user_logged_in"):
     st.stop()
 
 user = st.session_state.get("current_user", {})
+
+# Sidebar
+with st.sidebar:
+    sidebar_brand()
+    sidebar_nav("pages/06_Readiness_Assessment.py")
 
 st.title("📊 Exam Readiness Assessment")
 st.caption("AIR-Bud | Am I Ready?")
